@@ -1,5 +1,5 @@
 {
-  "name": "Hero-Tracker",
+  "name": "hero-tracker",
   "version": "1.0.0",
   "description": "A simple app to track heroes",
   "main": "server.js",
