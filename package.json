@@ -15,4 +15,29 @@
     "mysql2": "^3.3.2",
     "sequelize": "^6.31.1"
   }
+},
+{
+  "name": "Hero-Tracker",
+  "version": "1.0.0",
+  "description": "A simple app to track heroes",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node seeds/index.js"
+  },
+  "keywords": [],
+  "author": "Paul Sturm, Seth Andregg, Andrew Jacob",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.7"
+  }
 }
+
