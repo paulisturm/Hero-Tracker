@@ -1,5 +1,5 @@
 const Inventory = require('./inventory');
-const Power = require('./power');
+const Powers = require('./powers');
 const Weapons = require('./weapons');
 
 Inventory.belongsTo(Inventory, {
@@ -25,6 +25,6 @@ Weapons.belongsToMany(Inventory, {
 
 module.exports = {
     Inventory,
-    Power,
+    Powers,
     Weapons,
 };
