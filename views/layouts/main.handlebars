@@ -16,8 +16,12 @@
                 <a href="/">Project 2</a>
             </h1>
             <nav>
-                {{!If user is logged in, show logout link
-                {{#if user}}
+                 {{#if loggedIn}}
+                <a href="/dashboard"><span class="glyphicon glyphicon-user"></span>{{ username }}'s Dashboard</a>
+                <button id="logout" class="btn-no-style">logout</button>
+                {{else}}
+                <a href="/login">login</a>
+                {{/if}}
             </nav>
         </header>
         <main>
@@ -30,3 +34,7 @@
 </body>
 
 </html>
+
+{{#if loggedIn}}
+<script src="/javascript/logout.js"></script>
+{{/if}}
