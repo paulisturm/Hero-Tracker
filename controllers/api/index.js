@@ -5,6 +5,7 @@ const powersRoutes = require('./powers-routes');
 const userRoutes = require("./user-routes");
 const itemRoutes = require("./item-routes")
 
+
 router.use('/inventory', inventoryRoutes);
 router.use('/weapons', weaponsRoutes);
 router.use('/powers', powersRoutes);

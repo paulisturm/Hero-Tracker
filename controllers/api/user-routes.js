@@ -1,48 +1,151 @@
 const router = require('express').Router();
-const {Inventory} = require('../../models');
+const { User, Post, Comment } = require('../../models');
 
-router.get('/', async (req, res) => {
-    //find inventory
-    try {
-        const inventoryData = await Inventory.findAll();
-        res.status(200).json(inventoryData);
-    } catch (err) {
-        res.status(500).json(err);
-    }
+// get all users
+router.get('/', (req, res) => {
+  User.findAll({
+    attributes: { exclude: ['password'] }
+  })
+    .then(dbUserData => res.json(dbUserData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
-router.get('/:id', async (req, res) => {
-    // find one item by its `id` value
-    try {
-      const inventoryData = await Inventory.findByPk(req.params.id);
-      res.status(200).json(categoryData);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-
-  router.post('/', async (req, res) => {
-    // create a new item
-    try {
-      const inventoryData = await Inventory.create(req.body);
-      res.status(200).json(inventoryData);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-
-  router.delete('/:id', async (req, res) => {
-    // delete a category by its `id` value
-    try {
-      const inventoryData = await Inventory.destroy({
-        where: {
-          id: req.params.id
+router.get('/:id', (req, res) => {
+  User.findOne({
+    attributes: { exclude: ['password'] },
+    where: {
+      id: req.params.id
+    },
+    include: [
+      {
+        model: Post,
+        attributes: ['id', 'title', 'post_text', 'created_at']
+      },
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'created_at'],
+        include: {
+          model: Post,
+          attributes: ['title', 'post_id']
         }
-      });
-      res.status(200).json(inventoryData);
-    } catch (err) {
+      }
+    ]
+  })
+    .then(dbUserData => {
+      if (!dbUserData) {
+        res.status(404).json({ message: 'No user found with this id' });
+        return;
+      }
+      res.json(dbUserData);
+    })
+    .catch(err => {
+      console.log(err);
       res.status(500).json(err);
+    });
+});
+
+router.post('/', (req, res) => {
+  User.create({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password
+  })
+    .then(dbUserData => {
+      req.session.save(() => {
+        req.session.user_id = dbUserData.id;
+        req.session.username = dbUserData.username;
+        req.session.loggedIn = true;
+  
+        res.json(dbUserData);
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.post('/login', (req, res) => {
+  User.findOne({
+    where: {
+      email: req.body.email
     }
+  }).then(dbUserData => {
+    if (!dbUserData) {
+      res.status(400).json({ message: 'No user with that email address!' });
+      return;
+    }
+
+    const validPassword = dbUserData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res.status(400).json({ message: 'Incorrect password!' });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
+      req.session.loggedIn = true;
+  
+      res.json({ user: dbUserData, message: 'You are now logged in!' });
+    });
   });
+});
+
+router.post('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  }
+  else {
+    res.status(404).end();
+  }
+});
+
+router.put('/:id', (req, res) => {
+  // pass in req.body instead to only update what's passed through
+  User.update(req.body, {
+    individualHooks: true,
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbUserData => {
+      if (!dbUserData) {
+        res.status(404).json({ message: 'No user found with this id' });
+        return;
+      }
+      res.json(dbUserData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.delete('/:id', (req, res) => {
+  User.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbUserData => {
+      if (!dbUserData) {
+        res.status(404).json({ message: 'No user found with this id' });
+        return;
+      }
+      res.json(dbUserData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;
+
