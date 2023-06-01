@@ -22,14 +22,15 @@ Weapons.init(
         attack_speed: {
             type: DataTypes.INTEGER,
             allowsNull: false,
-        },
+        }
+        
     },
     {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'product',
+        modelName: 'weapons',
       }
 );
 

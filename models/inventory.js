@@ -11,25 +11,38 @@ Inventory.init(
         primaryKey: true,
         autoIncrement: true
     },
-    item_name: {
-        type: DataTypes.STRING,
-        allowsNull: false
-    },
-    price: {
-        type: DataTypes.INTEGER,
-        allowsNull: false
-    },
-    item_weight: {
+    item_id: {
         type: DataTypes.INTEGER,
         allowsNull: false,
+        references: {
+            model: "item",
+            key: "id"
+        }
     },
+    powers_id: {
+        type: DataTypes.INTEGER,
+        allowsNull: false,
+        references: {
+            model: "powers",
+            key: "id"
+        }
+    },
+    weapons_id: {
+        type: DataTypes.INTEGER,
+        allowsNull: false,
+        references: {
+            model: "weapons",
+            key: "id"
+        }
+    }
+    
 },
 {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'product',
+    modelName: 'inventory',
   }
 );
 
