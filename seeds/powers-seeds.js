@@ -19,6 +19,6 @@ const powersData = [
 ];
 
 const seedPowers = () => 
-Powers.bulkCreate(powerData);
+Powers.bulkCreate(powersData);
 
-module.expoers = seedPowers;
+module.exports = seedPowers;
