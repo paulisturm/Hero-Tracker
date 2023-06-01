@@ -15,7 +15,6 @@ Powers.init(
         type: DataTypes.STRING,
         allowsNull: false,
         primaryKey: true,
-        autoIncrement: true
       },
       power_type: {
         type: DataTypes.STRING,
