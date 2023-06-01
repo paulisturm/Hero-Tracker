@@ -11,7 +11,6 @@ const inventoryData = [
 
 const seedInventory = () =>
 
-Inventory.bulkCreate
-(inventoryData);
+Inventory.bulkCreate(inventoryData);
 
 module.exports = seedInventory;

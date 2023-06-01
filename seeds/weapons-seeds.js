@@ -21,4 +21,4 @@ const weaponsData = [
 const seedWeapons = () => 
 Weapons.bulkCreate(weaponsData);
 
-module.expoers = seedWeapons;
+module.exports = seedWeapons;
