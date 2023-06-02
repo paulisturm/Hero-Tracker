@@ -9,13 +9,7 @@ const sequelize = require('../config/connection');
 const seedAll = async () => {
   await sequelize.sync({ force: true });
   console.log('\n----- DATABASE SYNCED -----\n');
-  
-  await seedUser();
-  console.log('\n----- USER SEEDED -----\n');
-
-  await seedInventory();
-  console.log('\n----- INVENTORY SEEDED -----\n');
-
+ 
   await seedPowers();
   console.log('\n----- POWERS SEEDED -----\n');
 
@@ -24,6 +18,14 @@ const seedAll = async () => {
 
   await seedItem();
   console.log('\n----- ITEM SEEDED -----\n');
+
+  await seedInventory();
+  console.log('\n----- INVENTORY SEEDED -----\n');
+
+  await seedUser();
+  console.log('\n----- USER SEEDED -----\n');
+ 
+
 
   process.exit(0);
 };

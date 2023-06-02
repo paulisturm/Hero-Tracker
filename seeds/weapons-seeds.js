@@ -15,7 +15,7 @@ const weaponsData = [
         weapon_name: 'Spear',
         attack_damage: 12,
         attack_speed: 7
-      }  
+      },  
 ];
 
 const seedWeapons = () => 
