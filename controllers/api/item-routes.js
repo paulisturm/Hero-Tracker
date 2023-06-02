@@ -2,10 +2,10 @@ const router = require('express').Router();
 const {Item} = require('../../models');
 
 router.get('/', async (req, res) => {
-    //find inventory
+    //find Item
     try {
-        const inventoryData = await Inventory.findAll();
-        res.status(200).json(inventoryData);
+        const itemData = await Item.findAll();
+        res.status(200).json(itemData);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -14,8 +14,8 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     // find one item by its `id` value
     try {
-      const inventoryData = await Inventory.findByPk(req.params.id);
-      res.status(200).json(categoryData);
+      const itemData = await Item.findByPk(req.params.id);
+      res.status(200).json(itemData);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -24,8 +24,8 @@ router.get('/:id', async (req, res) => {
   router.post('/', async (req, res) => {
     // create a new item
     try {
-      const inventoryData = await Inventory.create(req.body);
-      res.status(200).json(inventoryData);
+      const itemData = await Item.create(req.body);
+      res.status(200).json(itemData);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -34,12 +34,12 @@ router.get('/:id', async (req, res) => {
   router.delete('/:id', async (req, res) => {
     // delete a category by its `id` value
     try {
-      const inventoryData = await Inventory.destroy({
+      const itemData = await Item.destroy({
         where: {
           id: req.params.id
         }
       });
-      res.status(200).json(inventoryData);
+      res.status(200).json(itemData);
     } catch (err) {
       res.status(500).json(err);
     }
