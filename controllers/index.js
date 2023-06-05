@@ -9,6 +9,7 @@ const homeRoutes = require('./home-routes.js');
 router.use('/api', apiRoutes);
 router.use('/', pageRoutes);
 router.use('/dashboard', dashboardRoutes);
+router.use('/', homeRoutes)
 router.use((req, res) => {
   res.send("<h1>Wrong Route!</h1>")
 });
