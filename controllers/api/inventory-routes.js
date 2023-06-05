@@ -15,7 +15,7 @@ router.get('/:id', async (req, res) => {
     // find one item by its `id` value
     try {
       const inventoryData = await Inventory.findByPk(req.params.id);
-      res.status(200).json(categoryData);
+      res.status(200).json(inventoryData);
     } catch (err) {
       res.status(500).json(err);
     }

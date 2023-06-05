@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     // find one item by its `id` value
     try {
-      const powersData = await Inventory.findByPk(req.params.id);
+      const powersData = await Powers.findByPk(req.params.id);
       res.status(200).json(powersData);
     } catch (err) {
       res.status(500).json(err);
@@ -22,9 +22,9 @@ router.get('/:id', async (req, res) => {
   });
 
   router.post('/', async (req, res) => {
-    // create a new item
+    // create a new power
     try {
-      const powersData = await Inventory.create(req.body);
+      const powersData = await Powers.create(req.body);
       res.status(200).json(powersData);
     } catch (err) {
       res.status(500).json(err);
