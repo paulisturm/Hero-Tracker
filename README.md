@@ -1,4 +1,4 @@
-# SQL Challenge: Employee Tracker Project-2
+# Hero Tracker
 ![CWRU](https://img.shields.io/badge/CWRU-CodingBootcamp-0A304E)
 [![MIT](https://img.shields.io/badge/License-MIT-blue)](https://lbesson.mit-license.org/)
 
@@ -17,6 +17,8 @@
   -[description](#description)
   -[installation](#installation)
   -[usage](#usage)
+  -[screenshot](#screenshot)
+  -[heroku-link](#heroku-link)
   -[licenses](#licenses)
   -[contribution](#contribution)
   -[questions](#questions)
@@ -25,8 +27,20 @@
 
 ## Usage
 
+## Screenshot
+
+## Heroku Link
+
+
 ## Licenses
+This project is covered under the MIT license. To get more information, click on the license badge at the top.
 
 ## Contribution
+Paul Sturm - https://github.com/paulisturm
+Seth Andregg - https://github.com/sandregg2
+Jacob Andrew - https://github.com/jcandrew1219
 
 ## Questions
+Paul Sturm - paulisturm22@gmail.com
+Seth Andregg - sandregg2@gmail.com
+Jacob Andrew - jcandrew1219@gmail.com
