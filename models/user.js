@@ -19,9 +19,14 @@ User.init(
             key: "id"
         }
     },
-    user_email: {
+    email: {
         type: DataTypes.STRING,
         allowsNull: false,
+    },
+    password: {
+        type: DataTypes.STRING,
+        allowsNull: false,
+        
     }
 
 },
