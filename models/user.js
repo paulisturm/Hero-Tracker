@@ -19,6 +19,10 @@ User.init(
             key: "id"
         }
     },
+    user_email: {
+        type: DataTypes.STRING,
+        allowsNull: false,
+    }
 
 },
 {
