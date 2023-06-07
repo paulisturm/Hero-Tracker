@@ -176,3 +176,9 @@
     padding: 1%;
     font-size: 110%;
   }
+
+  .box {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
